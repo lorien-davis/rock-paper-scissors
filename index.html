@@ -1,96 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Rock Paper Scissors</title>
+  <title>Rock Paper </title>
 </head>
 <body>
   <script>
-    const playerSelection = prompt('Choose Rock, Paper or Scissors')
-
-    function computerPlay() {
-      return Math.floor((Math.random() * 3) + 1);
+    const possibleMoves = ['rock', 'paper', 'scissors'];
+    const computer = computerSelection();
+    const winMessage = ['tie', 'win', 'lose'];
+    const winConditions = {
+      rock: ['rock', 'scissors', 'paper'], 
+      paper: ['paper', 'rock', 'scissors'],
+      scissors: ['scissors', 'paper', 'rock']
     }
 
-    function playRound(player, computer) {
-      let result;
-      player = player.toLowerCase();
-      computer = decimalToMove(computer);
-
-      if (player == computer) {
-        result = 'draw';
-      } else if (player == 'rock') {
-        if (computer == 'paper') {
-          result = 'lose';
-        } else {
-          result = 'win';
+    while (true) {
+      var player = prompt('Choose Rock, Paper or Scissors').toLowerCase();
+      
+      switch(player) {
+        case 'rock': {
+          break;
         }
-      } else if (player == 'paper') {
-        if (computer == 'scissors') {
-          result = 'lose';
-        } else {
-          result = 'win';
+        case 'paper': {
+          break;
         }
-      } else {
-        if (computer == 'rock') {
-          result = 'lose';
-        } else {
-          result = 'win';
+        case 'scissors': {
+          break;
         }
-      }
+        default: {
+          continue
+        }
+      } 
 
-      return result;
-    }
-    
-    function decimalToMove(x) {
-      let move;
-
-      if (x == 1) {
-        move = 'rock';
-      } else if (x == 2) {
-        move = 'paper';
-      } else {
-        move = 'scissors';
-      }
-
-      return move;
+      break;
     }
 
-    function game(x) {
-      let wins = 0;
-      let loses = 0;
-      let draws = 0;
-      let outcome;
+    // computerSelection returns rock, paper or scissors randomly.
+    function computerSelection() {
+      return possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+    } 
 
-      for (let i = 0; i < x; i++) {
-        let test = playRound(playerSelection, computerPlay());
 
-        if (test == 'win') {
-          wins += 1;
-        } else if (test == 'lose') {
-          loses += 1;
+    //  playRound returns the outcome of computerWinner.
+    const playRound = (player, computer) => computeWinner(player, computer);
+
+    // computeWinner takes player and computer inputs and returns tie, win or lose.
+    function computeWinner(player, computer) {
+      for (let i = 0; i < 3; i += 1) {
+        if (computer == winConditions[player][i]) {
+          return winMessage[i];
         } else {
-          draws += 1;
+          continue;
         }
       }
-
-      if (wins > loses) {
-        outcome = 'win';
-      } else if (wins < loses) {
-        outcome = 'lose';
-      } else {
-        outcome = 'draw';
-      }
-
-      return [wins, loses, draws, outcome];
     }
 
-    let games = game(5);
-    let wins = games[0];
-    let loses = games[1];
-    let draws = games[2];
-    let outcome = games[3];
+    // playGame takes games to play and computers winner of each, giving an outcome of total games.
+    function playGame(games) {
+      for (let i = 0; i < games; i += 1) {
+        let score = 0;
 
-    console.log(`You ${outcome}. \nWins: ${wins} \nLoses: ${loses} \nDraws: ${draws}`);
+        (playRound(player, computer) === 'lose') ? score -= 1 : (playRound(player, computer) === 'win') ? score += 1 : score = score; 
+
+        return (score < 0) ? 'lose' : (score > 0) ? 'win' : 'tie';
+      }
+    }
+
+    console.log(`You ${playGame(1)}! \nYou: ${player} \nComputer: ${computer}`);
   </script>
 </body>
 </html>
