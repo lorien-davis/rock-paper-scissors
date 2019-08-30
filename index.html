@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+</head>
+<body>
+  <script>
+    const playerSelection = prompt('Choose Rock, Paper or Scissors')
+
+    function computerPlay() {
+      return Math.floor((Math.random() * 3) + 1);
+    }
+
+    function playRound(player, computer) {
+      let result;
+      player = player.toLowerCase();
+      computer = decimalToMove(computer);
+
+      if (player == computer) {
+        result = 'draw';
+      } else if (player == 'rock') {
+        if (computer == 'paper') {
+          result = 'lose';
+        } else {
+          result = 'win';
+        }
+      } else if (player == 'paper') {
+        if (computer == 'scissors') {
+          result = 'lose';
+        } else {
+          result = 'win';
+        }
+      } else {
+        if (computer == 'rock') {
+          result = 'lose';
+        } else {
+          result = 'win';
+        }
+      }
+
+      return result;
+    }
+    
+    function decimalToMove(x) {
+      let move;
+
+      if (x == 1) {
+        move = 'rock';
+      } else if (x == 2) {
+        move = 'paper';
+      } else {
+        move = 'scissors';
+      }
+
+      return move;
+    }
+    
+    function moveToDecimal(move) {
+      let x;
+      move = move.toLowerCase();
+
+      if (move == 'rock') {
+        x = 1;
+      } else if (move == 'paper') {
+        x = 2;
+      } else {
+        x = 3;
+      }
+
+      return x;
+    }
+
+    function game(x) {
+      let wins = 0;
+      let loses = 0;
+      let draws = 0;
+      let outcome;
+
+      for (let i = 0; i < x; i++) {
+        let test = playRound(playerSelection, computerPlay());
+
+        if (test == 'win') {
+          wins += 1;
+        } else if (test == 'lose') {
+          loses += 1;
+        } else {
+          draws += 1;
+        }
+      }
+
+      if (wins > loses) {
+        outcome = 'win';
+      } else if (wins < loses) {
+        outcome = 'lose';
+      } else {
+        outcome = 'draw';
+      }
+
+      return [wins, loses, draws, outcome];
+    }
+
+    let games = game(5);
+    let wins = games[0];
+    let loses = games[1];
+    let draws = games[2];
+    let outcome = games[3];
+
+    console.log(`You ${outcome}. \nWins: ${wins} \nLoses: ${loses} \nDraws: ${draws}`);
+  </script>
+</body>
+</html>
