@@ -26,6 +26,7 @@ header {
 
 .game {
   height: 50vh;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,7 +40,7 @@ header {
 }
 
 .hands img {
-  width: 15%;
+  width: 200px;
   padding: 0 100px;
 }
 
@@ -82,7 +83,17 @@ header {
   transform: scale(1.1);
 }
 
-@media screen and (max-width:1600px) {
+@media screen and (max-width:1400px) {
+
+  header {
+    height: 40vh;
+  }
+
+  .buttons {
+    flex-direction: column;
+    margin: 10% auto 0 auto;
+  }
+
   .buttons img {
     display: none;
   }
@@ -95,16 +106,12 @@ header {
     margin-top: 50px;
   }
 
-  .buttons {
-    flex-direction: column;
-    margin: auto;
-  }
-
-  .hands {
-    margin-top: 150px;
-  }
-
   .game {
-    height: 85vh;
+    height: 60vh;
+  }
+
+  .hands img {
+    width: 100px;
+    padding: 0;
   }
 }
