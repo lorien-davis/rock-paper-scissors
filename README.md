@@ -1,4 +1,4 @@
 # Rock, Paper, Scissors
-Very simple console.log() version of rock paper scissors built following TOP. 
+A more complex version of Rock Paper Scissors.
 
-It is not very robust and will throw errors if player input is not correct.
+Includes a basic UI and a simple score keeping system. Currently the user can play infinitly.
