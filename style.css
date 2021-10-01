@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: hsla(0, 0%, 94%, 1);
+}
+
+.main-container {
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 50px 30px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media only screen and (min-width: 400px) {
+  .main-container {
+    width: 400px;
+    margin: 0 auto;
+  }
+}
+
+.results {
+  font-size: 48px;
+  color: hsla(249, 67%, 51%, 1);
+}
+
+.arena {
+  width: 95%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.arena-icon {
+  height: 125px;
+  width: auto;
+}
+
+#player {
+  transform: rotateX(180deg) rotateZ(90deg);
+}
+
+#opponent {
+  transform: rotate(-90deg);
+}
+
+.buttons {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.button {
+  width: 85px;
+  height: 85px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #ffffff;
+  box-shadow: 2px 4px 0px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.button img {
+  height: 50%;
+  width: auto;
+}
