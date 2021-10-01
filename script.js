@@ -32,7 +32,7 @@ const computeRound = (player) => {
 };
 
 const changeIcon = (icon, selection) => {
-  icon.src = `./img/${selection}.png`;
+  icon.src = `https://raw.githubusercontent.com/lorien-davis/rock-paper-scissors/master/img/${selection}.png`;
 };
 
 const changeText = (textElement, newText) => {
