@@ -1,37 +1,32 @@
 const playerIcon = document.querySelector("#player");
 const opponentIcon = document.querySelector("#opponent");
 const resultText = document.querySelector(".results");
-const buttons = document.querySelectorAll("div.button");
+const buttons = document.querySelectorAll(".button");
 
+// Returns rock, paper or scissors at random
 const getOpponentSelection = () => {
   const choices = ["rock", "paper", "scissors"];
   return choices[Math.floor(Math.random() * 3)];
 };
 
+// Returns tie, win or lose depending on inputs
 const checkPlayerWins = (player, opponent) => {
+  if (player === opponent) return "tie";
+
   switch (player) {
     case "rock":
-      return opponent === "scissors" ? true : false;
+      return opponent === "scissors" ? "win" : "lose";
     case "paper":
-      return opponent === "rock" ? true : false;
+      return opponent === "rock" ? "win" : "lose";
     case "scissors":
-      return opponent === "paper" ? true : false;
+      return opponent === "paper" ? "win" : "lose";
   }
 };
 
-const getRoundResults = (player, opponent) => {
-  if (player === opponent) return "tie";
-
-  return checkPlayerWins(player, opponent) ? "win" : "lose";
-};
-
-const printResults = (player, opponent, result) => {
-  console.log(`You: ${player}\nComputer: ${opponent} \nResult: ${result}`);
-};
-
+// Returns an object with information about the computed round
 const computeRound = (player) => {
   const opponent = getOpponentSelection();
-  const result = getRoundResults(player, opponent);
+  const result = checkPlayerWins(player, opponent);
 
   return { player, opponent, result };
 };
@@ -44,6 +39,8 @@ const changeText = (textElement, newText) => {
   textElement.textContent = newText;
 };
 
+// On each button press compute a round and
+// update the DOM to match the results
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
     const roundInfo = computeRound(e.currentTarget.id);
